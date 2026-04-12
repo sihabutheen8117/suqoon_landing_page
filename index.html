@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>suqoon.net — Software That Breathes</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#0e102f",
+                        "outline-variant": "#434656",
+                        "on-tertiary": "#193347",
+                        "secondary-fixed-dim": "#ffb59a",
+                        "secondary-fixed": "#ffdbce",
+                        "surface-container-high": "#252747",
+                        "on-tertiary-fixed": "#001d31",
+                        "inverse-surface": "#e0e0ff",
+                        "surface-container-low": "#161838",
+                        "on-tertiary-container": "#d9ebff",
+                        "surface-container": "#1a1d3c",
+                        "surface": "#0e102f",
+                        "on-background": "#e0e0ff",
+                        "inverse-on-surface": "#2b2e4e",
+                        "surface-container-lowest": "#080a2a",
+                        "on-secondary-fixed-variant": "#802a00",
+                        "secondary": "#ffb59a",
+                        "on-primary-fixed-variant": "#003ab2",
+                        "tertiary": "#b0c9e4",
+                        "surface-variant": "#303252",
+                        "on-surface-variant": "#c3c5d9",
+                        "secondary-container": "#ff5e07",
+                        "tertiary-fixed": "#cde5ff",
+                        "surface-bright": "#343657",
+                        "inverse-primary": "#004ee7",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#dce1ff",
+                        "primary-container": "#0057ff",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#b6c4ff",
+                        "surface-container-highest": "#303252",
+                        "surface-dim": "#0e102f",
+                        "tertiary-fixed-dim": "#b0c9e4",
+                        "on-primary-fixed": "#001550",
+                        "on-primary-container": "#e5e8ff",
+                        "on-surface": "#e0e0ff",
+                        "on-primary": "#00277f",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#536b82",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-tertiary-fixed-variant": "#30495f",
+                        "on-secondary": "#5a1b00",
+                        "on-secondary-fixed": "#370e00",
+                        "on-secondary-container": "#531900",
+                        "outline": "#8d90a2",
+                        "primary": "#b6c4ff",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "sans": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            background-color: #0e102f;
+            color: #e0e0ff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-panel {
+            background: rgba(48, 50, 82, 0.4);
+            backdrop-filter: blur(16px);
+        }
+
+        .kinetic-gradient {
+            background: linear-gradient(135deg, #0057ff 0%, #004ee7 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        #cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 87, 255, 0.08) 0%, rgba(0, 87, 255, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1), height 0.4s cubic-bezier(0.23, 1, 0.32, 1), transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Lenis Smooth Scroll Styles */
+        html.lenis,
+        html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-smooth iframe {
+            pointer-events: none;
+        }
+
+        /* SplitType Base */
+        .line {
+            overflow: hidden;
+        }
+
+        .char {
+            display: inline-block;
+            transform-origin: bottom center;
+        }
+    </style>
+</head>
+
+<body class="selection:bg-primary-container selection:text-on-primary-container">
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 bg-[#0e102f]/80 backdrop-blur-xl shadow-[0_20px_50px_rgba(8,10,42,0.06)]">
+        <div class="flex justify-between items-center max-w-[1440px] mx-auto px-8 h-20">
+            <div class="text-xl font-black tracking-tighter text-[#b6c4ff]">suqoon.net</div>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-[#b0c9e4] hover:text-white transition-colors font-medium text-sm tracking-tight"
+                    href="#platform">Platform</a>
+                <a class="text-[#b0c9e4] hover:text-white transition-colors font-medium text-sm tracking-tight"
+                    href="#documentation">Documentation</a>
+                
+                <!-- Services Dropdown wrapper -->
+                <div class="relative group">
+                    <button class="text-[#b0c9e4] hover:text-white transition-colors font-medium text-sm tracking-tight flex items-center gap-1 py-4">
+                        Services
+                        <span class="material-symbols-outlined text-[16px] transition-transform group-hover:rotate-180">expand_more</span>
+                    </button>
+                    <!-- Mega Menu Panel -->
+                    <div class="absolute top-full text-left left-[40%] -translate-x-1/2 pt-2 opacity-0 translate-y-4 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out z-50 w-[700px]">
+                        <div class="bg-surface-container-low/95 backdrop-blur-xl border border-outline-variant/20 rounded-2xl p-6 shadow-2xl flex gap-6">
+                            <!-- Categories -->
+                            <div class="flex-1 grid grid-cols-2 gap-x-4 gap-y-6">
+                                <a href="#" class="block p-3 rounded-xl hover:bg-surface-container-highest/50 transition-colors group/item">
+                                    <div class="font-bold text-primary-fixed mb-1 group-hover/item:text-primary">Custom Software Development</div>
+                                    <div class="text-xs text-on-surface-variant leading-relaxed">Build scalable, high-performance applications tailored to exact needs.</div>
+                                </a>
+                                <a href="#" class="block p-3 rounded-xl hover:bg-surface-container-highest/50 transition-colors group/item">
+                                    <div class="font-bold text-primary-fixed mb-1 group-hover/item:text-primary">AI & Automation</div>
+                                    <div class="text-xs text-on-surface-variant leading-relaxed">Embed cognitive workflows to automate complex business operations.</div>
+                                </a>
+                                <a href="#" class="block p-3 rounded-xl hover:bg-surface-container-highest/50 transition-colors group/item">
+                                    <div class="font-bold text-primary-fixed mb-1 group-hover/item:text-primary">Cloud & Deployment</div>
+                                    <div class="text-xs text-on-surface-variant leading-relaxed">Design high-availability cloud infrastructures that scale effortlessly.</div>
+                                </a>
+                                <a href="#" class="block p-3 rounded-xl hover:bg-surface-container-highest/50 transition-colors group/item">
+                                    <div class="font-bold text-primary-fixed mb-1 group-hover/item:text-primary">UI/UX & Product Design</div>
+                                    <div class="text-xs text-on-surface-variant leading-relaxed">Craft intuitive, frictionless interfaces focused on user engagement.</div>
+                                </a>
+                                <a href="#" class="block p-3 rounded-xl hover:bg-surface-container-highest/50 transition-colors group/item">
+                                    <div class="font-bold text-primary-fixed mb-1 group-hover/item:text-primary">Consulting / MVP</div>
+                                    <div class="text-xs text-on-surface-variant leading-relaxed">Accelerate viable product concepts into market-ready assets fast.</div>
+                                </a>
+                            </div>
+                            
+                            <!-- Side CTA Panel -->
+                            <div class="w-56 bg-[#080a2a]/60 rounded-xl p-5 border border-outline-variant/10 flex flex-col items-start justify-center">
+                                <span class="material-symbols-outlined text-tertiary text-3xl mb-3">handshake</span>
+                                <div class="text-sm font-bold text-on-surface mb-2">Discuss your vision</div>
+                                <div class="text-xs text-on-surface-variant mb-4 leading-relaxed">Work directly with our lead architects to forge your solution.</div>
+                                <button class="w-full text-sm font-bold py-2 rounded-md border border-primary text-primary hover:bg-primary hover:text-[#00277f] transition-all">Start a Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="text-[#b0c9e4] hover:text-white transition-colors font-medium text-sm tracking-tight"
+                    href="#pricing">Pricing</a>
+                <a class="text-[#b0c9e4] hover:text-white transition-colors font-medium text-sm tracking-tight"
+                    href="#">Changelog</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-3 mr-4">
+                    <button
+                        class="p-2 rounded-lg hover:bg-[#303252]/50 transition-all duration-300 active:scale-95 text-[#b6c4ff]">
+                        <span class="material-symbols-outlined">terminal</span>
+                    </button>
+                    <button
+                        class="p-2 rounded-lg hover:bg-[#303252]/50 transition-all duration-300 active:scale-95 text-[#b6c4ff]">
+                        <span class="material-symbols-outlined">hub</span>
+                    </button>
+                </div>
+                <button
+                    class="kinetic-gradient text-white px-6 py-2.5 rounded font-bold text-sm tracking-tight shadow-lg active:scale-95 transition-transform">
+                    Deploy Now
+                </button>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-[921px] flex items-center overflow-hidden px-8">
+            <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="z-10">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-low rounded-full mb-6 border border-outline-variant/15">
+                        <span class="font-mono text-[10px] uppercase tracking-widest text-secondary-fixed-dim">Status:
+                            Kinetic v4.2.0</span>
+                    </div>
+                    <h1
+                        class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8 text-primary-fixed reveal">
+                        Software That Breathes <br /><span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Breathes.</span>
+                    </h1>
+                    <p class="text-xl text-on-surface-variant max-w-xl mb-10 leading-relaxed">
+                        The high-performance orchestration layer designed for teams who demand architectural precision
+                        and zero-latency execution.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button
+                            class="kinetic-gradient text-white px-8 py-4 rounded font-bold tracking-tight shadow-xl hover:shadow-primary/20 transition-all active:scale-95">
+                            Start Building Now
+                        </button>
+                        <button
+                            class="px-8 py-4 rounded font-bold tracking-tight border border-outline-variant/30 text-primary hover:bg-surface-container-highest/50 transition-all">
+                            View Documentation
+                        </button>
+                    </div>
+                </div>
+                <div class="relative hidden lg:block">
+                    <div class="absolute -inset-20 bg-primary/10 blur-[120px] rounded-full"></div>
+                    <div
+                        class="glass-panel border border-outline-variant/20 rounded-xl p-6 shadow-2xl relative reveal delay-200 tilt-card">
+                        <div class="flex items-center justify-between mb-4 border-b border-outline-variant/10 pb-4">
+                            <div class="flex gap-2">
+                                <div class="w-3 h-3 rounded-full bg-error/40"></div>
+                                <div class="w-3 h-3 rounded-full bg-secondary/40"></div>
+                                <div class="w-3 h-3 rounded-full bg-tertiary/40"></div>
+                            </div>
+                            <div class="font-mono text-xs text-on-surface-variant/60">node — v20.10.0</div>
+                        </div>
+                        <div class="font-mono text-sm leading-relaxed text-[#b0c9e4]">
+                            <p class="text-primary-fixed-dim"><span class="text-secondary opacity-70">import</span> {
+                                engine } <span class="text-secondary opacity-70">from</span> "@suqoon/core";</p>
+                            <p class="mt-2 text-on-surface-variant">// Initialize high-performance context</p>
+                            <p class="mt-1"><span class="text-secondary opacity-70">const</span> app = <span
+                                    class="text-primary">await</span> engine.breath({</p>
+                            <p class="ml-4">latency: <span class="text-secondary-fixed-dim">"minimal"</span>,</p>
+                            <p class="ml-4">architecture: <span class="text-secondary-fixed-dim">"kinetic"</span>,</p>
+                            <p class="ml-4">scaling: <span class="text-primary-fixed-dim">true</span></p>
+                            <p class="mt-1">});</p>
+                            <p class="mt-4 text-on-surface-variant">// Deployment stream</p>
+                            <p class="mt-1">app.deploy().<span class="text-primary">then</span>(status =&gt; {</p>
+                            <p class="ml-4 text-tertiary">console.log(<span
+                                    class="text-secondary-fixed-dim">`Environment live: ${status.url}`</span>);</p>
+                            <p class="mt-1">});</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Decorative Background Element -->
+            <div class="absolute top-0 right-0 -z-10 opacity-20 translate-x-1/4 -translate-y-1/4">
+                <div class="w-[800px] h-[800px] border-[0.5px] border-primary rounded-full animate-pulse"></div>
+            </div>
+        </section>
+        <!-- Features Bento Grid -->
+        <section id="platform" class="py-24 px-8 bg-surface-container-lowest">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="mb-20 text-center">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tighter mb-4 text-on-surface">Architectural
+                        Supremacy</h2>
+                    <p class="text-on-surface-variant text-lg">Engineered primitives for the modern infrastructure
+                        stack.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[280px]">
+                    <!-- Large Card -->
+                    <div
+                        class="md:col-span-8 bg-surface-container-low rounded-xl p-8 border border-outline-variant/10 relative overflow-hidden group reveal tilt-card">
+                        <div class="relative z-10">
+                            <span class="material-symbols-outlined text-4xl text-primary mb-6">bolt</span>
+                            <h3 class="text-3xl font-bold tracking-tight mb-4 text-primary-fixed">Instant-Edge
+                                Replication</h3>
+                            <p class="text-on-surface-variant max-w-md leading-relaxed mb-6">Deploy globally in under
+                                400ms. Our proprietary edge protocol ensures your data is always exactly where your
+                                users are, without the cold-start penalty.</p>
+                            <div class="flex gap-8">
+                                <div>
+                                    <div class="text-2xl font-mono font-bold text-secondary">0.08ms</div>
+                                    <div class="text-xs font-mono uppercase tracking-widest text-on-surface-variant/60">
+                                        P99 Latency</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-mono font-bold text-tertiary">99.999%</div>
+                                    <div class="text-xs font-mono uppercase tracking-widest text-on-surface-variant/60">
+                                        Uptime SLA</div>
+                                </div>
+                            </div>
+                        </div>
+                        <img class="absolute right-0 bottom-0 w-1/2 opacity-20 grayscale transition-all group-hover:scale-105"
+                            data-alt="abstract tech representation with deep blue digital particles and light streaks representing global connectivity"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOFPVzDVqNPEw5HoRkWddCdCuA1E15V1s7YGe0TYPBOgLPQ7o2Z3urJ_yzwPJmw0k5POpE5kptgR_CZ1F5x5xb65QpSeJi9MWrhoSXW2_2G7osc-PlLK0snALeWo_Ugg4Abilph05NWxKEjSTpU3clethzIfB24biRr2WOLZHTVqEEl6xPBiM25e33tE5pl8cDffw_CsbJ4l9SyJQ-WCrlmySM1cwXQRFvek7JYFKJr21IawAQW3oAcLHbWUN55u7DNjFeE7HD2w" />
+                    </div>
+                    <!-- Small Card -->
+                    <div
+                        class="md:col-span-4 bg-surface-container-highest rounded-xl p-8 border border-outline-variant/10 flex flex-col justify-between reveal delay-100 tilt-card">
+                        <span class="material-symbols-outlined text-4xl text-secondary">security</span>
+                        <div>
+                            <h3 class="text-xl font-bold tracking-tight mb-2">Zero-Trust by Default</h3>
+                            <p class="text-sm text-on-surface-variant">Automated identity-aware proxying and encrypted
+                                tunneling for every service.</p>
+                        </div>
+                    </div>
+                    <!-- Small Card -->
+                    <div
+                        class="md:col-span-4 bg-surface-container-high rounded-xl p-8 border border-outline-variant/10 flex flex-col justify-between reveal delay-200 tilt-card">
+                        <span class="material-symbols-outlined text-4xl text-tertiary">monitoring</span>
+                        <div>
+                            <h3 class="text-xl font-bold tracking-tight mb-2">Deep Telemetry</h3>
+                            <p class="text-sm text-on-surface-variant">Real-time trace visualization integrated directly
+                                into your dashboard.</p>
+                        </div>
+                    </div>
+                    <!-- Medium Card -->
+                    <div
+                        class="md:col-span-8 bg-surface-container-low rounded-xl p-8 border border-outline-variant/10 relative overflow-hidden flex items-center reveal delay-100 tilt-card">
+                        <div class="grid grid-cols-2 gap-8 w-full">
+                            <div>
+                                <h3 class="text-2xl font-bold tracking-tight mb-4">Multi-Cloud Mesh</h3>
+                                <p class="text-sm text-on-surface-variant leading-relaxed">Bridge AWS, GCP, and Azure
+                                    seamlessly with our unified control plane. No more vendor lock-in or complex VPC
+                                    peering.</p>
+                            </div>
+                            <div class="flex items-center justify-end">
+                                <div
+                                    class="w-32 h-32 rounded-full border-4 border-dashed border-primary/20 flex items-center justify-center animate-[spin_20s_linear_infinite]">
+                                    <span class="material-symbols-outlined text-primary text-3xl">hub</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- How it works: Logical Flow -->
+        <section id="documentation" class="py-32 px-8">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="flex flex-col md:flex-row gap-20 items-center">
+                    <div class="md:w-1/2">
+                        <h2 class="text-4xl md:text-6xl font-black tracking-tighter mb-8 text-on-surface reveal">
+                            Precision<br />Workflow.</h2>
+                        <div class="space-y-12">
+                            <div class="flex gap-6">
+                                <div class="font-mono text-primary-fixed-dim text-lg font-bold">01.</div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Connect Repository</h4>
+                                    <p class="text-on-surface-variant leading-relaxed">Our build engine analyzes your
+                                        stack, auto-configures environments, and optimizes your container builds.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6">
+                                <div class="font-mono text-primary-fixed-dim text-lg font-bold">02.</div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Kinetic Simulation</h4>
+                                    <p class="text-on-surface-variant leading-relaxed">Before live deployment, every
+                                        commit is tested in a temporary production-mirror environment for 100%
+                                        confidence.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6">
+                                <div class="font-mono text-primary-fixed-dim text-lg font-bold">03.</div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Atomic Promotion</h4>
+                                    <p class="text-on-surface-variant leading-relaxed">Instant global rollouts with
+                                        automated rollbacks if any p99 latency spikes are detected.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="md:w-1/2 bg-surface-container-lowest rounded-2xl p-4 border border-outline-variant/15 shadow-2xl">
+                        <img class="rounded-xl filter brightness-75 contrast-125"
+                            data-alt="high contrast data dashboard with neon blue charts and technical metrics against a deep midnight background"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc-H2hyYK1lQhFOLYxl7TWENTIC6AiPnDkal-c3vWuFcbALG1ZE4nGJqlsI7Gs015L158tk0Mv2fWsplCkgeDtX_OW42nBbB5R4Fd9ndOqiiyEIzhZPUK9MnCsEcBuwxJSFdj-3L_KSjaOEqTLQx0edKJkiTYM3EpvkiRncz5NS6U0lVDPTEzFSJKRO54JCQlk9B8rV9Ce06pUDD-HKOMa9_0Xlbaz9Wpue5CQ55ex-2WKvSWLXnFROjRzzqlYkLSQCq08IZBajg" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonials -->
+        <section class="py-24 bg-surface-container-low border-y border-outline-variant/10">
+            <div class="max-w-[1440px] mx-auto px-8">
+                <h2 class="text-center text-xs font-mono uppercase tracking-[0.4em] text-secondary mb-16">Endorsed by
+                    Visionaries</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="flex flex-col">
+                        <span class="material-symbols-outlined text-4xl text-primary/40 mb-6">format_quote</span>
+                        <p class="text-lg italic text-on-surface mb-8 leading-relaxed">"Suqoon has fundamentally changed
+                            how we perceive infra. It's no longer a cost center; it's a competitive advantage for our
+                            engineering velocity."</p>
+                        <div class="mt-auto flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-surface-variant border border-primary/20 overflow-hidden">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="professional portrait of a tech executive with focused expression in soft studio lighting"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2HGQEwwRLuZI0AvnEZ7KboDL9mR_USvtu-bovHfvUwSJ3mNK3m-gwt37RwvhEGoS-6apPY25ISUyEfPMuukYkME9hPRTwpntm8UzhJtb4DDntXXBCyivavYq9587Jke0vbZduO1uu9iQsEAtUB1Vy7FWB_icWsW-_qHJcCF4PSamWnNS2y6gJ1ouW2KbELiMKIMJnWR3q9nv2-Tz6pgpuAaPdQEM7vUCYHvKPw_QzqTdA5x043MBvZ6-kUxqhDjKqdikzKIBe1g" />
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm">Marcus Chen</div>
+                                <div class="text-xs text-on-surface-variant font-mono uppercase tracking-wider">CTO @
+                                    NexGen Robotics</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="material-symbols-outlined text-4xl text-primary/40 mb-6">format_quote</span>
+                        <p class="text-lg italic text-on-surface mb-8 leading-relaxed">"The latency numbers we're seeing
+                            on Suqoon are bordering on theoretical limits. It truly feels like our software is breathing
+                            in sync with the user."</p>
+                        <div class="mt-auto flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-surface-variant border border-primary/20 overflow-hidden">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="close-up portrait of a female software engineer smiling confidently with blurred tech office background"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRL6wyIMrNA-624-iBNABQRUuoTH78jlZvRFA3WnupwgEuF2WtrM6LZVV56lCcqagFgSadIsrM1evPap4M0iRTMl3DHGE8lbi3TRq7TUgolvdVDODoSkQcky1ltEYuRRgvmdXj9diW70LM3Bmq7dPnQz4cJiXRYYsnQdzYeSPhHIVmPcgBMawWfKEv_J_jk2W0JKi-_yCKfz4-soijP_y_5l5NWJv8Q8bHESzH1HsdH1hLh01ZTwBWxpugXXXu5TzyHIwQ27ok2w" />
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm">Elena Rodriguez</div>
+                                <div class="text-xs text-on-surface-variant font-mono uppercase tracking-wider">
+                                    Principal Arch @ CloudScale</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="material-symbols-outlined text-4xl text-primary/40 mb-6">format_quote</span>
+                        <p class="text-lg italic text-on-surface mb-8 leading-relaxed">"Cleanest CLI experience I've
+                            used in a decade. The 'kinetic' approach to staging environments is a masterclass in UX
+                            design for devs."</p>
+                        <div class="mt-auto flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-surface-variant border border-primary/20 overflow-hidden">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="senior developer profile photo in black and white with dramatic lighting and tech aesthetic"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYBkU2Z6poFl_L6HfQRhGoEKxtjal0X1VK-BrNfI1Ko0-KOpxRYGj8c_R1wHaMUwAK1_AvjJFpq2PIlAwyFe9HZYjUyQOFe3YCI1-UBdw1ulWA3xygvuYWEmMSCv5eHtL1ZMpdyVioSXd1v30IU00Aw8FrqLRCA7lQAtcKtNy_SOgFy-H9qqTsjB0juN49A-BRnKw2yWtqg0hCaYGxvAA-SkTimRxX-D72XYf1zA1Znj7D0_L-JBQ-El5-oA2vsR0eBFSoV2Z2wA" />
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm">David Vance</div>
+                                <div class="text-xs text-on-surface-variant font-mono uppercase tracking-wider">Lead Dev
+                                    @ OpenProto</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Pricing: Precision Tiers -->
+        <section id="pricing" class="py-32 px-8">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl md:text-6xl font-black tracking-tighter mb-4 text-on-surface">Precision Tiers
+                    </h2>
+                    <p class="text-on-surface-variant text-lg">Scalable power for every stage of your evolution.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Basic -->
+                    <div
+                        class="p-8 rounded-xl border border-outline-variant/10 bg-surface-container-low flex flex-col h-full reveal tilt-card">
+                        <div class="mb-8">
+                            <div class="text-sm font-mono uppercase tracking-[0.2em] text-on-surface-variant mb-2">
+                                Prototype</div>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-4xl font-bold text-on-surface">$0</span>
+                                <span class="text-on-surface-variant/60">/mo</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-4 mb-10 flex-grow">
+                            <li class="flex gap-3 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                Shared Edge Runtime
+                            </li>
+                            <li class="flex gap-3 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                3 Kinetic Sandboxes
+                            </li>
+                            <li class="flex gap-3 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                Community Support
+                            </li>
+                        </ul>
+                        <button
+                            class="w-full py-4 rounded border border-outline-variant text-primary font-bold hover:bg-surface-container-highest transition-all">Start
+                            Free</button>
+                    </div>
+                    <!-- Professional (Active/Featured) -->
+                    <div
+                        class="p-8 rounded-xl border-2 border-primary bg-surface-container-highest flex flex-col h-full shadow-2xl relative reveal delay-100 tilt-card">
+                        <div
+                            class="absolute top-0 right-8 -translate-y-1/2 bg-primary text-on-primary px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">
+                            Recommended</div>
+                        <div class="mb-8">
+                            <div class="text-sm font-mono uppercase tracking-[0.2em] text-primary mb-2">Architect</div>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-4xl font-bold text-on-surface">$49</span>
+                                <span class="text-on-surface-variant/60">/mo</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-4 mb-10 flex-grow">
+                            <li class="flex gap-3 text-sm text-on-surface">
+                                <span class="material-symbols-outlined text-primary text-lg"
+                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Dedicated Compute Nodes
+                            </li>
+                            <li class="flex gap-3 text-sm text-on-surface">
+                                <span class="material-symbols-outlined text-primary text-lg"
+                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Unlimited Sandboxes
+                            </li>
+                            <li class="flex gap-3 text-sm text-on-surface">
+                                <span class="material-symbols-outlined text-primary text-lg"
+                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Custom Domain SSL
+                            </li>
+                            <li class="flex gap-3 text-sm text-on-surface">
+                                <span class="material-symbols-outlined text-primary text-lg"
+                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                24/7 Priority Support
+                            </li>
+                        </ul>
+                        <button
+                            class="w-full py-4 rounded kinetic-gradient text-white font-bold shadow-lg shadow-primary/20 active:scale-95 transition-transform">Go
+                            Architect</button>
+                    </div>
+                    <!-- Enterprise -->
+                    <div
+                        class="p-8 rounded-xl border border-outline-variant/10 bg-surface-container-low flex flex-col h-full reveal delay-200 tilt-card">
+                        <div class="mb-8">
+                            <div class="text-sm font-mono uppercase tracking-[0.2em] text-on-surface-variant mb-2">
+                                Enterprise</div>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-4xl font-bold text-on-surface">Custom</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-4 mb-10 flex-grow">
+                            <li class="flex gap-3 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                Air-Gapped Deployments
+                            </li>
+                            <li class="flex gap-3 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                On-Prem Hybrid Cloud
+                            </li>
+                            <li class="flex gap-3 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                SOC2/HIPAA Compliance
+                            </li>
+                        </ul>
+                        <button
+                            class="w-full py-4 rounded border border-outline-variant text-primary font-bold hover:bg-surface-container-highest transition-all">Contact
+                            Sales</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Final CTA -->
+        <section class="py-32 px-8 overflow-hidden relative">
+            <div class="absolute inset-0 bg-gradient-to-r from-primary-container/20 to-transparent"></div>
+            <div class="max-w-[1440px] mx-auto text-center relative z-10">
+                <h2 class="text-5xl md:text-8xl font-black tracking-tighter mb-10 text-on-surface reveal">Ready to
+                    Breathe?</h2>
+                <p class="text-xl text-on-surface-variant max-w-2xl mx-auto mb-12">Join 15,000+ developers shipping
+                    precision-grade applications on suqoon.net.</p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <button
+                        class="kinetic-gradient text-white px-10 py-5 rounded-full font-bold text-lg tracking-tight shadow-2xl active:scale-95 transition-transform">
+                        Launch Project
+                    </button>
+                    <button class="text-[#b0c9e4] font-bold text-lg flex items-center gap-2 group">
+                        Talk to an Architect
+                        <span
+                            class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-[#0e102f] w-full py-12 border-t border-[#434656]/15">
+        <div class="flex flex-col md:flex-row justify-between items-center max-w-[1440px] mx-auto px-8 gap-6">
+            <div class="flex flex-col items-center md:items-start gap-2">
+                <div class="text-lg font-bold text-[#b6c4ff]">suqoon.net</div>
+                <p class="font-mono text-[10px] uppercase tracking-widest text-[#b0c9e4]/60">© 2024 suqoon.net —
+                    Engineered for Precision.</p>
+            </div>
+            <div class="flex gap-8">
+                <a class="font-mono text-xs uppercase tracking-widest text-[#b0c9e4]/60 hover:text-[#b6c4ff] transition-colors"
+                    href="#">Privacy Policy</a>
+                <a class="font-mono text-xs uppercase tracking-widest text-[#b0c9e4]/60 hover:text-[#b6c4ff] transition-colors"
+                    href="#">Terms of Service</a>
+                <a class="font-mono text-xs uppercase tracking-widest text-[#b0c9e4]/60 hover:text-[#b6c4ff] transition-colors"
+                    href="#">Security</a>
+                <a class="font-mono text-xs uppercase tracking-widest text-[#b0c9e4]/60 hover:text-[#b6c4ff] transition-colors"
+                    href="#">Status</a>
+            </div>
+            <div class="flex gap-4">
+                <div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+                <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-secondary">All Systems
+                    Operational</span>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script>
+        // Smooth Scrolling with Lenis
+        const lenis = new Lenis({
+            duration: 1.4,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true,
+            mouseMultiplier: 1,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Sync Lenis with GSAP ScrollTrigger
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+
+        // Advanced Ambient Glow Cursor
+        const cursor = document.createElement('div');
+        cursor.id = 'cursor-glow';
+        document.body.prepend(cursor);
+
+        let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        let cursorPosition = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        let hoverState = false;
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        const interactiveSelectors = 'button, a, .tilt-card, img';
+        document.querySelectorAll(interactiveSelectors).forEach(el => {
+            el.addEventListener('mouseenter', () => { hoverState = true; });
+            el.addEventListener('mouseleave', () => { hoverState = false; });
+        });
+
+        function renderCursor() {
+            cursorPosition.x += (mouse.x - cursorPosition.x) * 0.12;
+            cursorPosition.y += (mouse.y - cursorPosition.y) * 0.12;
+            cursor.style.left = cursorPosition.x + 'px';
+            cursor.style.top = cursorPosition.y + 'px';
+
+            if (hoverState) {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.6)';
+                cursor.style.background = 'radial-gradient(circle, rgba(0, 87, 255, 0.15) 0%, rgba(0, 87, 255, 0) 50%)';
+            } else {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.background = 'radial-gradient(circle, rgba(0, 87, 255, 0.08) 0%, rgba(0, 87, 255, 0) 70%)';
+            }
+            requestAnimationFrame(renderCursor);
+        }
+        renderCursor();
+
+        // GSAP Extraordinary Animations
+
+        // 1. Hero Text Reveal (SplitType)
+        const heroTitle = new SplitType('#hero h1', { types: 'lines, words, chars' });
+
+        gsap.from(heroTitle.chars, {
+            y: 80,
+            opacity: 0,
+            rotationX: -90,
+            stagger: 0.02,
+            duration: 1.2,
+            ease: "back.out(1.5)",
+            delay: 0.1
+        });
+
+        gsap.from('#hero p', {
+            y: 40,
+            opacity: 0,
+            duration: 1.2,
+            delay: 0.6,
+            ease: "power4.out"
+        });
+
+        gsap.from('#hero button, #hero .inline-flex', {
+            y: 30,
+            opacity: 0,
+            stagger: 0.15,
+            duration: 1,
+            delay: 0.8,
+            ease: "power3.out"
+        });
+
+        // 2. Magnetic Buttons (Kinetic Buttons)
+        const kineticBtns = document.querySelectorAll('.kinetic-gradient');
+        kineticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
+                const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
+                gsap.to(btn, { x: x, y: y, duration: 0.4, ease: "power2.out" });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1.2, 0.4)" });
+            });
+        });
+
+        // 3. Scroll Reveal Sequences (Replacing IntersectionObserver)
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach(elem => {
+            elem.classList.remove('reveal'); // disable CSS transition so GSAP takes over
+            elem.style.opacity = '0';
+            elem.style.visibility = 'hidden'; // prevent flashes
+
+            let customDelay = 0;
+            if (elem.classList.contains('delay-100')) customDelay = 0.1;
+            if (elem.classList.contains('delay-200')) customDelay = 0.2;
+            if (elem.classList.contains('delay-300')) customDelay = 0.3;
+
+            gsap.fromTo(elem,
+                { y: 80, opacity: 0, scale: 0.95, rotationX: 5 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    rotationX: 0,
+                    duration: 1.2,
+                    delay: customDelay,
+                    ease: "expo.out",
+                    autoAlpha: 1, // handles visibility
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        // 4. Image Parallax inside specific cards / blocks
+        gsap.utils.toArray('.tilt-card img, #documentation img').forEach(img => {
+            gsap.to(img, {
+                yPercent: 15,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: img.parentElement,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+        });
+
+        // 5. Number Counter / Metric reveal
+        gsap.utils.toArray('.text-2xl.font-mono.font-bold').forEach(num => {
+            gsap.from(num, {
+                opacity: 0,
+                scale: 0.5,
+                duration: 1,
+                ease: "back.out(2)",
+                scrollTrigger: {
+                    trigger: num,
+                    start: "top 90%"
+                }
+            });
+        });
+
+        // Vanilla Tilt Initialization (existing feature preserved)
+        if (typeof VanillaTilt !== 'undefined') {
+            VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
+                max: 8,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.12,
+                perspective: 1200
+            });
+        }
+
+        // Button Interactivity (Demo fallback)
+        document.querySelectorAll('button:not(.kinetic-gradient)').forEach(btn => {
+            btn.addEventListener('click', () => {
+                gsap.to(btn, { scale: 0.92, duration: 0.1, yoyo: true, repeat: 1 });
+            });
+        });
+    </script>
+    
+    <!-- Mount Floating AI Assistant via React -->
+    <script type="module" src="/src/mountAssistant.jsx"></script>
+</body>
+
+</html>
