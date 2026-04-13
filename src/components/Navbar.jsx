@@ -53,7 +53,7 @@ const Navbar = () => {
             </a>
           ))}
           <a href="#cta" className="navbar__cta" id="nav-cta" onClick={() => setMobileOpen(false)}>
-            Start Free Trial
+            Get Started
           </a>
         </div>
 

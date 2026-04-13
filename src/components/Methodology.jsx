@@ -4,8 +4,8 @@ import './Methodology.css';
 const steps = [
   {
     step: '01',
-    title: 'Architectural Audit',
-    description: 'We map your current inefficiencies and design a personalized sanctuary model.',
+    title: 'Audit the Noise',
+    description: 'Connect your current toolstack — Slack, Jira, Notion, or Asana. Our "Quiet Migration" tool maps your active projects without triggering a single notification to your team.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="11" cy="11" r="8" />
@@ -15,8 +15,8 @@ const steps = [
   },
   {
     step: '02',
-    title: 'Fluid Integration',
-    description: "Our team migrates your data into Suqoon.net's high-performance ecosystem with zero downtime.",
+    title: 'Design Your Silence',
+    description: 'Configure focus hours and notification batches. Suqoon learns your team’s peak performance times and automatically shields those blocks from non-urgent interruptions.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="16 3 21 3 21 8" />
@@ -29,8 +29,8 @@ const steps = [
   },
   {
     step: '03',
-    title: 'Sustainable Mastery',
-    description: 'Continuous refinement ensures your digital environment grows with your ambitions.',
+    title: 'Restore Deep Work',
+    description: 'Ship high-impact work with Guardian AI handling the administrative overhead. Experience the tranquility of a workspace that values your attention as much as you do.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
@@ -65,8 +65,8 @@ const Methodology = () => {
       <div className="methodology__aura" />
       <div className="section-inner">
         <div className="methodology__header">
-          <span className="label-md methodology__label">Methodology</span>
-          <h2 className="headline-lg">The Pathway to Clarity.</h2>
+          <span className="label-md methodology__label">How It Works</span>
+          <h2 className="headline-lg">Live in 3 Steps, Not 3 Months.</h2>
         </div>
 
         <div className="methodology__timeline">

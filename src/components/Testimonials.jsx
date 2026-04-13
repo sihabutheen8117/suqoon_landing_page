@@ -3,22 +3,22 @@ import './Testimonials.css';
 
 const testimonials = [
   {
-    quote: "Suqoon.net didn't just replace our project manager; it changed our entire internal culture. Work feels like work again, not noise.",
-    name: 'Elias Thorne',
-    role: 'CEO, Zenith Design',
-    avatar: 'ET',
+    quote: "Our engineers were drowning in Slack notifications. Since moving to Suqoon, the constant 'ping' anxiety has vanished. We've seen a 30% increase in PR throughput simply because our team can finally stay in deep work for hours at a time.",
+    name: 'Sarah Chen',
+    role: 'Director of Engineering, Velo Systems',
+    avatar: 'SC',
   },
   {
-    quote: "The UI is so responsive and clean that our developers actually enjoy documenting their processes. It's truly software that breathes.",
-    name: 'Maya Vance',
-    role: 'CTO, HyperStream',
-    avatar: 'MV',
+    quote: "We consolidated four tools into one, but the real ROI was the mental space it cleared for our product managers. Suqoon's Guardian AI handles the status reporting that used to take up my entire Monday morning.",
+    name: 'Marcus Thorne',
+    role: 'Chief Product Officer, Aura Health',
+    avatar: 'MT',
   },
   {
-    quote: 'Finally, a platform that respects the user\'s attention. Minimalist, powerful, and impeccably designed.',
-    name: 'Julian Rossi',
-    role: 'Lead Strategist, Aura Creative',
-    avatar: 'JR',
+    quote: "Transitioning a 60-person agency to a new tool is usually a nightmare. Suqoon was the first tool where the team actually thanked us for the switch. It's not just another app; it's a better way to work.",
+    name: 'Elena Rodriguez',
+    role: 'Head of Operations, Studio Flux',
+    avatar: 'ER',
   },
 ];
 
@@ -38,9 +38,9 @@ const Testimonials = () => {
       <div className="section-inner">
         <div className="testimonials__header">
           <span className="label-md testimonials__label">Testimonials</span>
-          <h2 className="headline-lg">The Voice of Serenity</h2>
+          <h2 className="headline-lg">What Teams Are Saying</h2>
           <p className="body-lg testimonials__desc">
-            What our high-performance partners are saying.
+            From startups to scale-ups, here's how Suqoon changed daily work.
           </p>
         </div>
 

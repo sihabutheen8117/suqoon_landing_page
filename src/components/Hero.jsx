@@ -98,7 +98,7 @@ const Hero = () => {
       <div className="hero__content">
         <div className="hero__badge">
           <span className="hero__badge-dot" />
-          <span className="hero__badge-text">Redefining Digital Environments</span>
+          <span className="hero__badge-text">The Operating System for Deep Work</span>
         </div>
 
         <h1 className="hero__title display-lg">
@@ -111,44 +111,44 @@ const Hero = () => {
         </h1>
 
         <p className="hero__subtitle body-lg">
-          Reject the frantic clutter of legacy platforms. Suqoon.net delivers
-          high-performance software environments designed for clarity,
-          pace, and absolute control.
+          Modern teams lose 28% of their week to "work about work" — the constant 
+          toggling between fragmented tools. Suqoon replaces the noise with a single, 
+          calm workspace designed to shield your attention and restore your focus.
         </p>
 
         <div className="hero__actions">
           <a href="#cta" className="hero__btn hero__btn--primary magnetic-btn" id="hero-cta-primary">
-            <span className="hero__btn-text">Start Free Trial</span>
+            <span className="hero__btn-text">Start Your Deep Work Journey</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             <div className="hero__btn-shine" />
           </a>
           <a href="#methodology" className="hero__btn hero__btn--secondary" id="hero-cta-secondary">
-            <span>Learn How It Works</span>
+            <span>The Suqoon Philosophy</span>
           </a>
         </div>
 
         <div className="hero__stats">
           <div className="hero__stat">
             <span className="hero__stat-value">
-              <AnimatedCounter target="200" suffix="+" />
+              <AnimatedCounter target="23" suffix="%" />
             </span>
-            <span className="hero__stat-label">Elite Organizations</span>
+            <span className="hero__stat-label">Higher Focus Retained</span>
           </div>
           <div className="hero__stat-divider" />
           <div className="hero__stat">
             <span className="hero__stat-value">
-              <AnimatedCounter target="40" suffix="%" />
+              <AnimatedCounter target="60" suffix="%" />
             </span>
-            <span className="hero__stat-label">Less Cognitive Load</span>
+            <span className="hero__stat-label">Less Notification Fatigue</span>
           </div>
           <div className="hero__stat-divider" />
           <div className="hero__stat">
             <span className="hero__stat-value">
-              <AnimatedCounter target="60" suffix="fps" />
+              <AnimatedCounter target="5" suffix=" hrs" />
             </span>
-            <span className="hero__stat-label">Fluid Performance</span>
+            <span className="hero__stat-label">Saved Per Week/Employee</span>
           </div>
         </div>
       </div>

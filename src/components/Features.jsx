@@ -11,8 +11,8 @@ const features = [
         <rect x="14" y="14" width="7" height="7" rx="1" />
       </svg>
     ),
-    title: 'Intuitive Flow',
-    description: 'Layouts that predict your next move, reducing cognitive load by 40% through spatial design.',
+    title: 'Cognitive Load Reduction',
+    description: 'Stop the context-switching tax. Suqoon unifies tasks, docs, and communication into a single flow, reducing mental fatigue and keeping your team in the zone.',
     color: 'var(--accent-primary)',
   },
   {
@@ -21,8 +21,8 @@ const features = [
         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
       </svg>
     ),
-    title: 'Fluid Performance',
-    description: 'Built on a lightweight architecture that ensures 60fps interactions across all enterprise modules.',
+    title: 'Focus-First Notifications',
+    description: 'Traditional tools are built to distract. Suqoon uses intelligent batching to deliver notifications only when you are between focus sessions, not during them.',
     color: 'var(--accent-secondary)',
   },
   {
@@ -32,8 +32,8 @@ const features = [
         <path d="M7 11V7a5 5 0 0 1 10 0v4" />
       </svg>
     ),
-    title: 'Digital Privacy',
-    description: 'Sovereign data encryption that puts you in absolute control of your digital footprint.',
+    title: 'Privacy by Default',
+    description: 'Your thoughts and work belong to you. We employ end-to-end encryption for every document and message, ensuring your intellectual property remains private.',
     color: 'var(--accent-tertiary)',
   },
   {
@@ -43,8 +43,8 @@ const features = [
         <polyline points="22 4 12 14.01 9 11.01" />
       </svg>
     ),
-    title: 'Total Sync',
-    description: 'Real-time collaborative environments that feel as intimate as local software.',
+    title: 'Asynchronous Collaboration',
+    description: 'Kill the "quick sync" meeting. Our asynchronous-first tools allow teams to provide high-fidelity feedback without requiring real-time presence.',
     color: 'var(--primary)',
   },
   {
@@ -54,8 +54,8 @@ const features = [
         <circle cx="12" cy="10" r="3" />
       </svg>
     ),
-    title: 'AI Serenity',
-    description: 'Non-intrusive intelligence that handles the mundane so you can focus on the meaningful.',
+    title: 'Guardian AI',
+    description: 'An AI that works for you, not against you. It summarizes long threads, surfaces critical blockers, and drafts reports so you can spend your energy on creative work.',
     color: 'var(--accent-primary)',
   },
   {
@@ -67,8 +67,8 @@ const features = [
         <path d="M14 13a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-6z" />
       </svg>
     ),
-    title: 'Modular Canvas',
-    description: 'A completely customizable workspace that adapts to your unique mental model.',
+    title: 'Deep Work Environment',
+    description: 'A UI that recedes into the background. Minimalist by design, Suqoon puts your work front and center, removing visual clutter and distractions.',
     color: 'var(--accent-secondary)',
   },
 ];
@@ -99,9 +99,9 @@ const Features = () => {
       <div className="section-inner">
         <div className="features__header">
           <span className="label-md features__label">Features</span>
-          <h2 className="headline-lg">Precision Engineering</h2>
+          <h2 className="headline-lg">Built Around How Teams Actually Work</h2>
           <p className="body-lg features__desc">
-            Every module is crafted to eliminate noise and maximize creative focus.
+            Every feature exists to solve a real problem — not to pad a comparison chart.
           </p>
         </div>
 

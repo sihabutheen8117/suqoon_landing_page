@@ -22,7 +22,7 @@ const Footer = () => {
               </div>
               <span className="footer__logo-text">Suqoon.net</span>
             </a>
-            <p className="footer__tagline body-md">Crafted for digital serenity.</p>
+            <p className="footer__tagline body-md">Reclaim your focus. Restore your calm.</p>
           </div>
 
           <div className="footer__links-group">
@@ -33,22 +33,22 @@ const Footer = () => {
               <a href="#pricing" className="footer__link">Pricing</a>
             </div>
             <div className="footer__links-col">
-              <h4 className="footer__links-title">Company</h4>
-              <a href="#" className="footer__link">About</a>
-              <a href="#" className="footer__link">Careers</a>
-              <a href="#" className="footer__link">Blog</a>
+              <h4 className="footer__links-title">Philosophy</h4>
+              <a href="#" className="footer__link">Deep Work</a>
+              <a href="#" className="footer__link">Guardian AI</a>
+              <a href="#" className="footer__link">The Manifesto</a>
             </div>
             <div className="footer__links-col">
               <h4 className="footer__links-title">Legal</h4>
-              <a href="#" className="footer__link">Privacy Policy</a>
-              <a href="#" className="footer__link">Terms of Service</a>
-              <a href="#" className="footer__link">Contact Us</a>
+              <a href="#" className="footer__link">Privacy</a>
+              <a href="#" className="footer__link">Terms</a>
+              <a href="#" className="footer__link">Contact</a>
             </div>
           </div>
         </div>
 
         <div className="footer__bottom">
-          <p className="footer__copy">© 2026 Suqoon.net. Crafted for digital serenity.</p>
+          <p className="footer__copy">© 2026 Suqoon.net. Reclaim your focus.</p>
           <div className="footer__socials">
             <a href="#" className="footer__social" aria-label="Twitter" id="social-twitter">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">

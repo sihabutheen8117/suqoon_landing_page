@@ -3,44 +3,47 @@ import './Pricing.css';
 
 const plans = [
   {
-    name: 'Clarity',
-    price: '$49',
-    period: '/mo',
-    description: 'For small teams finding their flow.',
+    name: 'Individual',
+    price: '$0',
+    period: 'Free Forever',
+    description: 'For solo creators who need peace.',
     features: [
-      'Up to 5 Sanctuary Seats',
-      'Core Clarity Modules',
-      '24h Support Turnaround',
+      'Unlimited personal boards',
+      'Basic Guardian AI assistance',
+      'Standard notification batching',
+      '1 GB secure storage',
     ],
-    cta: 'Start Free Trial',
+    cta: 'Get Started Free',
     highlighted: false,
   },
   {
-    name: 'Serenity',
-    price: '$129',
-    period: '/mo',
-    description: 'For organizations scaling with purpose.',
+    name: 'Teams',
+    price: '$12',
+    period: 'per user/mo',
+    description: 'For high-performance teams shielding focus.',
     features: [
-      'Unlimited Sanctuary Seats',
-      'Full Module Library',
-      'Dedicated Success Manager',
-      'API Access & Integrations',
+      'Unlimited team members',
+      'Advanced focus-hour controls',
+      'Full Guardian AI suite',
+      'Asynchronous video integration',
+      'Priority team support',
     ],
     cta: 'Start Free Trial',
     highlighted: true,
   },
   {
-    name: 'Sovereignty',
+    name: 'Organization',
     price: 'Custom',
     period: '',
-    description: 'For enterprises demanding absolute control.',
+    description: 'For companies building a deep work culture.',
     features: [
-      'Bespoke Module Dev',
-      'On-Premise Hosting',
-      'White-Glove Migration',
-      'All Serenity Features',
+      'SSO and advanced security',
+      'Data residency controls',
+      'Custom SLA and onboarding',
+      'Organization-wide focus metrics',
+      'Dedicated success manager',
     ],
-    cta: 'Contact Sales',
+    cta: 'Talk to Sales',
     highlighted: false,
   },
 ];
@@ -71,9 +74,9 @@ const Pricing = () => {
       <div className="section-inner">
         <div className="pricing__header">
           <span className="label-md pricing__label">Pricing</span>
-          <h2 className="headline-lg">Invest in Stability</h2>
+          <h2 className="headline-lg">Simple Pricing That Scales With You</h2>
           <p className="body-lg pricing__desc">
-            Transparent pricing for organizations of every scale.
+            No per-feature upsells. No surprise AI add-on charges. Every plan includes full AI capabilities.
           </p>
         </div>
 
